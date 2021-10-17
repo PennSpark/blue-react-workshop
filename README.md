@@ -329,17 +329,31 @@ The final, working app should look like this:
 import React, { useState, useEffect } from 'react'
 
 const WeatherDisplay = ( props ) => {
-  const [weatherData, setWeatherData] = useState({})
+  const [data, setData] = useState({})
   
   useEffect(() => {
     fetch("http://api.openweathermap.org/data/2.5/weather?q=" + props.zip + "&appid=b1b35bba8b434a28a0be2a3e1071ae5b&units=imperial")
     .then(response => response.json())
-    .then(data => setWeatherData(data))
+    .then(data => setData({ weatherData: data}))
   }, [])
-  
-  return (
-    !weatherData ? <div> loading </div> : <div> {JSON.stringify(weatherData)}</div>;
-  )
+
+  if (!data.weatherData) return <div>Loading</div>;
+  else {
+    const weather = data.weatherData.weather[0]; 
+    const iconUrl = "http://openweathermap.org/img/w/" + weather.icon + ".png";
+      return (
+          <div>
+              <h1>
+              {weather.main} in {data.weatherData.name}
+              <img src={iconUrl} alt={data.weatherData.description} />
+              </h1>
+              <p>Current: {data.weatherData.main.temp}°</p>
+              <p>High: {data.weatherData.main.temp_max}°</p>
+              <p>Low: {data.weatherData.main.temp_min}°</p>
+              <p>Wind Speed: {data.weatherData.wind.speed} mi/hr</p>
+          </div>
+      )
+  }
 }
 ```
 
