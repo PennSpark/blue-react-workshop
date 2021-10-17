@@ -325,6 +325,26 @@ The final, working app should look like this:
 
 [The final source code of the app is here](./AppSnapshots/4-Installing-Components-App.js)
 
+# Converting to Hooks
+
+```js
+import React, { useState, useEffect } from 'react'
+
+const WeatherDisplay = ( props ) => {
+  const [weatherData, setWeatherData] = useState({})
+  
+  useEffect(() => {
+    fetch("http://api.openweathermap.org/data/2.5/weather?q=" + props.zip + "&appid=b1b35bba8b434a28a0be2a3e1071ae5b&units=imperial")
+    .then(response => response.json())
+    .then(data => setWeatherData(data))
+  }, [])
+  
+  return (
+    !weatherData ? <div> loading </div> : <div> {JSON.stringify(weatherData)}</div>;
+  )
+}
+```
+
 # Resources and other topics
 
 - [React](reactjs.org) - Official Documentation
