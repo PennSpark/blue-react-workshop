@@ -260,49 +260,49 @@ npm install --save bootstrap react-bootstrap
 In the top of the app file, import the css from the bootstrap module:
 
 ```js
-import "bootstrap/dist/css/bootstrap.css";
+import 'bootstrap/dist/css/bootstrap.min.css'
 ```
 
 Next, import the components we want to use from `react-bootstrap`. You can find components on the [react-bootstrap site](https://react-bootstrap.github.io/components.html).
 
 ```js
-import { Navbar, NavItem, Nav, Grid, Row, Col } from "react-bootstrap";
+import { Navbar, Nav, Container, Row, Col } from "react-bootstrap";
 ```
 
 Now, replace the App component's render function to use the bootstrap components:
 
 ```js
 <div>
-  <Navbar>
-    <Navbar.Header>
-      <Navbar.Brand>
-        React Simple Weather App
-      </Navbar.Brand>
-    </Navbar.Header>
-  </Navbar>
-  <Grid>
-    <Row>
-      <Col md={4} sm={4}>
-        <h3>Select a city</h3>
-        <Nav
-          bsStyle="pills"
-          stacked
-          activeKey={activePlace}
-          onSelect={index => {
-            this.setState({ activePlace: index });
-          }}
-        >
-          {PLACES.map((place, index) => (
-            <NavItem key={index} eventKey={index}>{place.name}</NavItem>
-          ))}
-        </Nav>
-      </Col>
-      <Col md={8} sm={8}>
-        <WeatherDisplay key={activePlace} zip={PLACES[activePlace].zip} />
-      </Col>
-    </Row>
-  </Grid>
-</div>
+      <Navbar bg="light" expand="lg">
+        <Container>
+          <Navbar.Brand href="#home">Simple Weather App</Navbar.Brand>
+        </Container>
+      </Navbar>
+      <Container>
+        <Row>
+          <Col md={4} sm={4}>
+            <h3>Select a city</h3>
+            <Nav
+              variant="pills"
+              activeKey={this.state.activePlace}
+              className="flex-column"
+              onSelect={index => {
+                this.setState({ activePlace: index });
+              }}
+            >
+              {PLACES.map((place, index) => (
+                <Nav.Item>
+                  <Nav.Link href="#" key={index} eventKey={index}>{place.name}</Nav.Link>
+                </Nav.Item>
+              ))}
+            </Nav>
+          </Col>
+          <Col md={8} sm={8}>
+            <WeatherDisplay key={this.state.activePlace} zip={PLACES[this.state.activePlace].zip} />
+          </Col>
+        </Row>
+      </Container>
+    </div>
 ```
 
 ![Snapshot of the app with Bootstrap components](./images/Bootstrap.png)
