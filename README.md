@@ -316,14 +316,12 @@ npm install --save bootswatch
 [Browse the bootswatch website](http://bootswatch.com/) to find a theme, and install it by replacing the import of bootstrap css with the following. In this case we are using the 'journal' theme.
 
 ```js
-import "bootswatch/journal/bootstrap.css";
+import "bootswatch/dist/journal/bootstrap.css";
 ```
 
 The final, working app should look like this:
 
 ![Snapshot of the weather app with weather data loading](./images/Final.png)
-
-[The final source code of the app is here](./AppSnapshots/4-Installing-Components-App.js)
 
 # Converting to Hooks
 
