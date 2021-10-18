@@ -99,11 +99,11 @@ Near the top of the file, lets add some different places that we might want to d
 
 ```js
 const PLACES = [
-  { name: "Palo Alto", zip: "94303" },
-  { name: "San Jose", zip: "94088" },
-  { name: "Santa Cruz", zip: "95062" },
-  { name: "Honolulu", zip: "96803" }
-];
+        { name: "Palo Alto", zip: "94028" },
+        { name: "San Jose", zip: "95101" },
+        { name: "Santa Cruz", zip: "95062" },
+        { name: "Honolulu", zip: "96803" }
+ ];
 ```
 
 Now, upgrade the App's render function to iterate over each place, and render a `<button>` tag for it.
